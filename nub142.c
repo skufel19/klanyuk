@@ -5,9 +5,9 @@
 #include <stdlib.h>
 
 int main() {
-          int semid;
-          char pathname[] = "for_ipc.ipc";
-          key_t key;
+          int semid; //IPC-desriptor for massive semaforof
+          char pathname[] = "for_ipc.ipc"; // Name file/ with help then generate ipc-key
+          key_t key; //peremennaya for save ips-key
           struct sembuf mybuf;
           if((key = ftok(pathname, 0)) < 0) {
                   printf("ne ydalos' generate key ipc\n");
@@ -17,7 +17,9 @@ int main() {
                     printf("ne ydalos' get diskriptor massive semarfoz");
                     exit(-1);
           }
-          mybuf.sem_op = 1;
+         // procs give dostyp k massive semaforof for ips-key
+        // esli massive nety, sozdaem
+          mybuf.sem_op = 1; // kodirovanie operacii D(semid)
           mybuf.sem_flg = 0;
           mybuf.sem_num = 0;
           printf(" unlock tekyshwgo procecca\n");
